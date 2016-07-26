@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# This script runs other useful git hook utilities from the same directory as itself
+#
+# To enable this hook, call it from .git/hooks/pre-commit.
+
+DIR=$(dirname $0)
+
+sh ${DIR}/check-jshint.sh
+if [ $? -ne 0 ]; then
+	exit 1
+fi
+
+sh ${DIR}/check-jsonlint-cli.sh
+if [ $? -ne 0 ]; then
+	exit 1
+fi
+
+sh ${DIR}/js-beautify.sh
+if [ $? -ne 0 ]; then
+	exit 1
+fi
