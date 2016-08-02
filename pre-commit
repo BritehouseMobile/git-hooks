@@ -11,6 +11,11 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
+sh ${DIR}/check-csslint.sh
+if [ $? -ne 0 ]; then
+	exit 1
+fi
+
 sh ${DIR}/check-jsonlint-cli.sh
 if [ $? -ne 0 ]; then
 	exit 1
